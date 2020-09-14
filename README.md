@@ -18,3 +18,6 @@ Step by step
 
 7. For report
 - npm run report
+
+Example report
+https://drive.google.com/file/d/1_RSezJf6yQBxQg9fDpE-EEbeNWL68t9_/view
