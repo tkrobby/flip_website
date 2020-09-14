@@ -1,7 +1,6 @@
 # Automation Website Flip
-Belajar webdriver io
 
-Step by step
+Step by step running
 
 1. Java
 2. Node.js installation
