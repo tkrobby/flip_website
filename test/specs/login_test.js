@@ -1,12 +1,43 @@
 const { assert } = require("chai");
 const LoginPage = require('../../object/login_object.js')
 const HomePage = require('../../object/homepage_object.js')
+const ForgetPasswordPage = require('../../object/forget_password_page.js')
+const Registerpage = require('../../object/register_page.js')
 
-describe("Login not input email and password", function(){
+describe("Verify button daftar", function(){
     it("open browser", function(){
         browser.url('')
     });
+    it("click button Daftar", function(){
+        LoginPage.ButtonDaftar.click()
+        browser.pause(5000)
+    });
+    it("verify page register", function(){
+        const TitlePage = Registerpage.TitlePage.getText()
+        assert.equal('Selamat Datang!',TitlePage)
+        const SubTitlePage = Registerpage.SubTitlePage.getText()
+        assert.equal('Lengkapi data berikut dan akun flipmu akan terbuat',SubTitlePage)
+        browser.back();
+        browser.pause(5000)
+    });
+})
+describe("Verify link lupa password can be click", function(){
+    it("click lupa password", function(){
+        LoginPage.ForgetPassword.click()
+        browser.pause(5000)
+    });
+    it("verify page lupa password", function(){
+        const TitlePage = ForgetPasswordPage.TitlePage.getText()
+        assert.equal('Lupa Password?',TitlePage)
+        const SubTitlePage = ForgetPasswordPage.SubTitlePage.getText()
+        assert.equal('Silakan reset password di sini',SubTitlePage)
+        browser.back();
+        browser.pause(5000)
+    });
 
+})
+
+describe("Login not input email and password", function(){
     it("Login invalid", function(){
         LoginPage.ButtonLoggin.click()
         browser.pause(5000)
@@ -92,5 +123,17 @@ describe("Login valid username and password", function(){
         browser.pause(5000)
     })
 
+})
+
+describe("Verify after logout user can't login using blank password", function(){
+    it("Login invalid", function(){
+        LoginPage.ButtonLoggin.click()
+        browser.pause(5000)
+    }) 
+
+    it("varify alert error", function(){
+        const AlertError = LoginPage.AlertErrorLogin.getText()
+        assert.equal('Email atau Password salah.',AlertError)
+    })
 })
 
